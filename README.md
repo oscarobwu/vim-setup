@@ -1,6 +1,7 @@
 # Vim
 
 # Description
+感謝 Wei Lee 的分享 這是由他哪邊提供出來的 
 My vim plug-ins and settings in .vimrc.  
 The snippets directory is for my custom snippets.
 
