@@ -14,6 +14,11 @@ The snippets directory is for my custom snippets.
     cp .vimrc ~/
     ```
 2. Install `ag` and `fzf`
+
+
+    ```sh
+    apt install silversearcher-ag fzf -y
+    ```
 3. Start vi and it will automatically install `vim-plug` (package management for vim)  
 It might display plenty of *error message* since there are settings for plug-in that not yet been installed.  
 *You can simply ignore them*  
