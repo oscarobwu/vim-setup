@@ -9,7 +9,7 @@ The snippets directory is for my custom snippets.
 1. Clone this repo and copy .vimrc to home directory
 
     ```sh
-    git clone https://github.com/Lee-W/vim-setting.git
+    git clone https://github.com/oscarobwu/vim-setup.git
     cd vim-setting 
     cp .vimrc ~/
     ```
