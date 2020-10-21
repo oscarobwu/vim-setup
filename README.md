@@ -10,7 +10,7 @@ The snippets directory is for my custom snippets.
 
     ```sh
     git clone https://github.com/oscarobwu/vim-setup.git
-    cd vim-setting 
+    cd vim-setip
     cp .vimrc ~/
     ```
 2. Install `ag` and `fzf`
