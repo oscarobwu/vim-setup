@@ -2,6 +2,9 @@
 "====================================================================
 " Start vundle
 "====================================================================
+" :PluginInstall 
+" 安裝Plugin 指令
+"
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
