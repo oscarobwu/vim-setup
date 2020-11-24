@@ -1,0 +1,334 @@
+"####################################### .vimrc start #####################################
+"====================================================================
+" Start vundle
+"====================================================================
+" :PluginInstall
+" 安裝Plugin 指令
+"
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+"===============================================================
+" Write your plugins here
+"===============================================================
+" Layouts
+Plugin 'Yggdroot/indentLine'
+Plugin 'ntpeters/vim-better-whitespace'
+
+" Markdown
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+" Python related
+Plugin 'python-mode/python-mode'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-scripts/python_match.vim'
+Plugin 'vim-scripts/python.vim'
+Plugin 'davidhalter/jedi-vim' " for python3
+
+
+" Misc tools
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-rails.git'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'chazy/cscope_maps'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'wesleyche/SrcExpl'
+Plugin 'wesleyche/Trinity'
+Plugin 'majutsushi/tagbar'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" scripts from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+
+"auto-completion stuff
+"Plugin 'klen/python-mode'
+"Plugin 'klen/rope-vim'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
+""code folding
+Plugin 'tmhedberg/SimpylFold'
+
+"Colors!!!
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jnurmine/Zenburn'
+
+" ansible
+Plugin 'pearofducks/ansible-vim'
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" 自动的一键格式化代码
+" pip install autopep8
+Plugin 'Chiel92/vim-autoformat'
+nnoremap <F6> :Autoformat<CR>
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+" 使用不同的颜色高亮匹配的括号
+Plugin 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+                        \ ['brown',       'RoyalBlue3'],
+                        \ ['Darkblue',    'SeaGreen3'],
+                        \ ['darkgray',    'DarkOrchid3'],
+                        \ ['darkgreen',   'firebrick3'],
+                        \ ['darkcyan',    'RoyalBlue3'],
+                        \ ['darkred',     'SeaGreen3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['brown',       'firebrick3'],
+                        \ ['gray',        'RoyalBlue3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['Darkblue',    'firebrick3'],
+                        \ ['darkgreen',   'RoyalBlue3'],
+                        \ ['darkcyan',    'SeaGreen3'],
+                        \ ['darkred',     'DarkOrchid3'],
+                        \ ['red',         'firebrick3'],
+                        \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" 代码检查工具
+Plugin 'w0rp/ale'
+ let g:ale_fix_on_save = 1
+ let g:ale_completion_enabled = 1
+ let g:ale_sign_column_always = 1
+ let g:airline#extensions#ale#enabled = 1
+"====================================================================
+" Run vundle
+"====================================================================
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"====================================================================
+" Tagbar Settings
+"====================================================================
+" Open and close the tagbar separately
+nmap <F7> :TagbarToggle<CR>
+
+"====================================================================
+" Trinity Settings
+"====================================================================
+" Open and close all the three plugins on the same time
+nmap <F8>  :TrinityToggleAll<CR>
+
+" Open and close the Source Explorer separately
+nmap <F9>  :TrinityToggleSourceExplorer<CR>
+
+" Open and close the Taglist separately
+nmap <F10> :TrinityToggleTagList<CR>
+
+" Open and close the NERD Tree separately
+nmap <F11> :TrinityToggleNERDTree<CR>
+
+"====================================================================
+" Airline settings
+"====================================================================
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+set laststatus=2
+set rtp+=/usr/local/lib/python3.7/dist-packages/powerline/bindings/vim/
+set t_Co=256
+let g:auto_highlight#disabled_filetypes = ['nerdtree']
+set nocompatible
+
+let g:minBufExplForceSyntaxEnable = 1
+set guifont=Inconsolata\ for\ Powerline:h14
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+let python_highlight_all=1
+au Filetype python set tabstop=4
+au Filetype python set softtabstop=4
+au Filetype python set shiftwidth=4
+au Filetype python set textwidth=79
+au Filetype python set expandtab
+au Filetype python set autoindent
+au Filetype python set fileformat=unix
+autocmd Filetype python set foldmethod=indent
+autocmd Filetype python set foldlevel=99
+
+"====================================================================
+" syntastic settings
+"====================================================================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:loaded_syntastic_c_checker = 1
+let g:loaded_syntastic_cpp_checker = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
+
+"====================================================================
+" pymode settings
+"====================================================================
+let g:pymode_lint = 1    " Prefer to use syntastic to check lint
+let g:pymode_folding = 0 " Unfold all
+"set foldlevel=0
+"folding settings
+set foldmethod=indent "fold based on indent
+set foldnestmax=10 "deepest fold is 10 levels
+set nofoldenable "disable folding by default
+set foldlevel=1
+
+
+"====================================================================
+" Editor and display Settings
+"====================================================================
+colorscheme koehler         " Color for gvim
+
+set hlsearch                " Highlight search
+set guifont=Inconsolata\ for\ Powerline\ 32 " Font
+set cursorline              " Hight background at current cursor line
+set nu                      " Display line numbers
+
+" Set background color at colum 80 "顯示 80 字元多一個紅色線
+"set colorcolumn=80
+"highlight ColorColumn guibg=#202020
+
+" Show tabs
+set listchars=tab:\|.
+set list
+
+" Ensure syntax is on
+syntax on
+
+"au bufnewfile *.sh 0r .vim/sh_header.temp
+autocmd bufnewfile *.sh so ~/.vim/header_template.
+autocmd bufnewfile *.sh exe "1," . 10 . "g/File Name :/s//File Name : " .expand("%")
+"autocmd bufnewfile *.sh exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd bufnewfile *.sh exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%Y-%m-%d-%H_%M")
+
+"height ligth cusor
+        colo torte
+set cursorline
+set cursorcolumn
+set hlsearch
+set incsearch
+hi CursorLine cterm=none ctermbg=DarkMagenta ctermfg=White
+hi CursorColumn cterm=none ctermbg=DarkMagenta ctermfg=White
+hi Search cterm=reverse ctermbg=none ctermfg=none
+
+"====================================================================
+" Indent Settings
+"====================================================================
+" Tabs
+set ts=4
+set expandtab
+set shiftwidth=4
+
+" visual indent shift
+vnoremap < <gv
+vnoremap > >gv
+
+"====================================================================
+" MISC Settings
+"====================================================================
+" Shared unamed regitered with primary selection
+set clipboard+=unnamed
+
+" uft-8 encoding: https://stackoverflow.com/questions/16507777/set-encoding-and-fileencoding-to-utf-8-in-vim
+set encoding=utf-8
+set fileencoding=utf-8
+
+"====================================================================
+" Python Settings
+"====================================================================
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+let python_highlight_all=1
+
+"====================================================================
+" auto
+"====================================================================
+" mucomplete, clang_complete
+set noinfercase
+set completeopt-=preview
+set completeopt+=menuone,noselect
+let g:mucomplete#enable_auto_at_startup = 1
+let g:clang_library_path='/usr/lib/llvm-6.0/lib'
+let g:clang_user_options = '-std=c99'
+let g:clang_complete_auto = 1
+
+let g:jedi#popup_on_dot = 0  " It may be 1 as well
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+
+" jedi-vim
+let g:jedi#force_py_version = 3
+let g:jedi#completions_command = '<C-N>'
+let g:jedi#goto_command = '<leader>jg'
+let g:jedi#documentation_command = '<leader>jd'
+let g:jedi#usages_command = '<leader>ju'
+
+"====================================================================
+" pandoc Settings
+"====================================================================
+" Disable autoconeal for markdown
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+    au! BufNewFile,BufFilePre,BufRead *.markdown set filetype=markdown.pandoc
+augroup END
+
+let g:pandoc#syntax#conceal#use = 0
+
+"====================================================================
+" YCM Settings
+"====================================================================
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0
+
+"====================================================================
+" Console tab setting:
+" Ref https://superuser.com/questions/410982/in-vim-how-can-i-quickly-switch-between-tabs
+"====================================================================
+nnoremap <S-Left> :tabprevious<CR>
+nnoremap <S-Right> :tabnext<CR>
+
+"###################################### .vimrc end ########################################################
