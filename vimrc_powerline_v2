@@ -133,7 +133,26 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+set noexpandtab
 
+" ## vim Head auto generation
+function AddTitle()
+call setline(1,"#!/usr/bin/env python")
+call append(1,"# -*- coding: utf-8 -*-")
+call append(2,"###################################################################")
+call append(3,"#Filename:   " . expand("%"))
+call append(4,"#Author:     Oscar Wu")
+call append(5,"#Email:      oscarobwu@gmail.com")
+call append(6,"#Date:       " . strftime("%Y-%m-%d_%H_%M"))
+call append(7,"#Desc:       ")
+call append(8,"")
+call append(9,"#source /devOps/shell/common/functions")
+call append(10,"###################################################################")
+call append(11," ")
+endf
+
+" ## Tip Press 'F4', the AddTitle function will be called
+nmap <F4> : call AddTitle() <cr>
 "====================================================================
 " Tagbar Settings
 "====================================================================
