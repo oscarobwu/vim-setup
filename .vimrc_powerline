@@ -1,8 +1,9 @@
 "####################################### .vimrc start #####################################
+":
 "====================================================================
 " Start vundle
 "====================================================================
-" :PluginInstall 
+" :PluginInstall
 " 安裝Plugin 指令
 "
 set nocompatible              " be iMproved, required
@@ -133,7 +134,26 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+set noexpandtab
 
+" ## vim Head auto generation
+function AddTitle()
+call setline(1,"#!/usr/bin/env python")
+call append(1,"# -*- coding: utf-8 -*-")
+call append(2,"###################################################################")
+call append(3,"#Filename:   " . expand("%"))
+call append(4,"#Author:     Oscar Wu")
+call append(5,"#Email:      oscarobwu@gmail.com")
+call append(6,"#Date:       " . strftime("%Y-%m-%d_%H_%M"))
+call append(7,"#Desc:       ")
+call append(8,"")
+call append(9,"#source /devOps/shell/common/functions")
+call append(10,"###################################################################")
+call append(11," ")
+endf
+
+" ## Tip Press 'F4', the AddTitle function will be called
+nmap <F4> : call AddTitle() <cr>
 "====================================================================
 " Tagbar Settings
 "====================================================================
@@ -214,7 +234,9 @@ set foldlevel=1
 "====================================================================
 " Editor and display Settings
 "====================================================================
-colorscheme koehler         " Color for gvim
+"colorscheme koehler         " Color for gvim
+"colorscheme lucius         " Color for gvim
+colorscheme lucid
 
 set hlsearch                " Highlight search
 set guifont=Inconsolata\ for\ Powerline\ 32 " Font
@@ -232,7 +254,11 @@ set list
 " Ensure syntax is on
 syntax on
 
-au bufnewfile *.sh 0r .vim/sh_header.temp
+"au bufnewfile *.sh 0r .vim/sh_header.temp
+autocmd bufnewfile *.sh so ~/.vim/header_template.
+autocmd bufnewfile *.sh exe "1," . 10 . "g/File Name :/s//File Name : " .expand("%")
+"autocmd bufnewfile *.sh exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd bufnewfile *.sh exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%Y-%m-%d-%H_%M")
 
 "height ligth cusor
         colo torte
@@ -240,7 +266,7 @@ set cursorline
 set cursorcolumn
 set hlsearch
 set incsearch
-hi CursorLine cterm=none ctermbg=DarkMagenta ctermfg=White
+"hi CursorLine cterm=none ctermbg=DarkMagenta ctermfg=White
 hi CursorColumn cterm=none ctermbg=DarkMagenta ctermfg=White
 hi Search cterm=reverse ctermbg=none ctermfg=none
 
@@ -295,6 +321,16 @@ let g:jedi#popup_on_dot = 0  " It may be 1 as well
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+"====================================================================
+" auto 回到上次位置
+"====================================================================
+if has("autocmd")
+    autocmd BufRead *.txt set tw=78
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal g'\"" |
+    \ endif
+endif
 
 " jedi-vim
 let g:jedi#force_py_version = 3
