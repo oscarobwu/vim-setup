@@ -1,0 +1,12 @@
+VimL: let s:value_start  = 'Â¡'
+VimL: let s:value_end    = 'Â¡'
+VimL: let s:marker_open  = '<+'
+VimL: let s:marker_close = '+>'
+<!-- Created by Â¡Author(1)Â¡ with Vim Â¡substitute(v:version, '.', '&.', '')Â¡ -->
+<html>
+VimL: call s:Include( 'css' )
+
+	<body>
+		<+content+>
+	</body>
+</html>

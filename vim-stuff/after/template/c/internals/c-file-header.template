@@ -1,0 +1,20 @@
+VimL:" Default File header - C/C++ Definition File-Template, mfukar
+VimL: let s:value_start = 'Â¡'
+VimL: let s:value_end   = s:value_start
+VimL: let s:marker_open  = '<+'
+VimL: let s:marker_close = '+>'
+/**
+ * @file        Â¡s:filenameÂ¡
+ * @author      Â¡substitute(Author(0),'\r"','\r *','g')Â¡
+ * @version     <+version+>
+ * @date        Created:     Â¡DateStamp()Â¡
+ *              Last Update: Â¡DateStamp()Â¡
+ *------------------------------------------------------------------------
+ * Description: <+description+>
+ *------------------------------------------------------------------------
+ * History:     <+history+>
+ * TODO:        <+missing features+>
+ *------------------------------------------------------------------------
+ * -*- coding: utf-8 -*-
+ *------------------------------------------------------------------------
+ */
